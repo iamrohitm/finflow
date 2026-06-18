@@ -3,10 +3,11 @@ import './styles.css';
 import Input from '../Input';
 import Button from '../Button'; 
 import { toast } from 'react-toastify';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db} from '../../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import { auth, db, provider} from '../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore"; 
 import { useNavigate } from 'react-router-dom';
+
 
 
 const SignupSigninComponent = () => {
@@ -118,6 +119,35 @@ const SignupSigninComponent = () => {
     }
   }
 
+  function googleAuth(){
+    setLoading(true)
+    try{
+
+      signInWithPopup(auth, provider)
+      .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      createDoc(user)
+      console.log("user>>", user)
+      toast.success("User Authenticated!")
+      setLoading(false)
+      navigate("/dashboard")
+      // IdP data available using getAdditionalUserInfo(result)
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage)
+        setLoading(false)
+      });
+    }catch(e){
+      toast.error(e.message)
+      setLoading(false)
+    }
+  }
+
   return (
     <>
       {loginForm ? 
@@ -150,6 +180,7 @@ const SignupSigninComponent = () => {
             />
             <p className='p-login'>or</p>
             <Button 
+              onClick={googleAuth}
               text={loading ? "Loading...": "Login Using Google"} 
               blue={true}
             />
@@ -206,7 +237,8 @@ const SignupSigninComponent = () => {
               onClick={signupWithEmail}
             />
             <p className='p-login'>or</p>
-            <Button 
+            <Button
+              onClick={googleAuth}
               text={loading ? "Loading...": "Signup Using Google"} 
               blue={true}
             />
