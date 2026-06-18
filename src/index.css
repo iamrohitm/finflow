@@ -4,10 +4,10 @@
     --theme: #2970ff;
     --black: #000;
     --white: #fff;
-    --shadow-color: rgba(227, 227, 227, 0.75); 
+    --shadow: 0px 0px 30px 8px rgba(227, 227, 227, 0.75); 
 }
 
-body{
+body{   
     margin: 0;
     font-family: "Montserrat", sans-serif;
 }

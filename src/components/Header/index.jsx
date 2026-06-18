@@ -2,9 +2,15 @@ import React from 'react'
 import './styles.css';
 
 const Header = () => {
+    function logoutFnc(){
+        alert("Logout!!")
+    }
+
   return (
     <div className='navbar'>
-      Header
+      <p className='logo'>FinFlow.</p>
+      <p className='logo link' onClick={logoutFnc}>Logout</p>
+
     </div>
   )
 }

@@ -1,12 +1,17 @@
 import React from 'react'
-import Header from './components/Header'
+import './App.css'
+import {BrowserRouter, Route, Routes } from 'react-router-dom'
+import SignupSignin from './pages/Signup'
+import Dashboard from './pages/Dashboard'
 
 const App = () => {
   return (
-    <div>
-      Hello World
-      <Header/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<SignupSignin/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
