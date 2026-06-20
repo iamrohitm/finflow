@@ -41,12 +41,14 @@ const ChartComponent = ({sortedTransactions}) => {
         data,
         xField: 'date',
         yField: 'amount',
+        height: 280
     };
 
     const spendingConfig = {
         data: newSpendings,
         angleField: 'amount',
-        colorField: 'tag' 
+        colorField: 'tag',
+        height: 280
     };
 
     let chart;
