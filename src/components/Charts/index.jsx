@@ -53,12 +53,12 @@ const ChartComponent = ({sortedTransactions}) => {
     let pieChart;
     return (
         <div className='charts-wrapper'>
-            <div>
-                <h2>Your Analytics</h2>
-                <Line {...config} />;
+            <div className='chart-box'>
+                <h2 className='chart-title'>Your Analytics</h2>
+                <Line {...config} />
             </div>
-            <div>
-                <h2>Your Spendings</h2>
+            <div className='chart-box'>
+                <h2 className='chart-title'>Your Spendings</h2>
                 <Pie {...spendingConfig} />
             </div>
         </div>

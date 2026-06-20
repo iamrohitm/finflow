@@ -1,5 +1,4 @@
-.wrapper, 
-.charts-wrapper {
+.wrapper{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,11 +7,47 @@
 }
 
 .charts-wrapper{
-  width: 93%;
+  display: flex;
+  width: 92%;
   justify-content: space-between;
   height: auto;
   padding: 2rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
   margin: 2rem;
+  border-radius: 10px;
+} 
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 1rem;
 }
+
+
+
+.chart-box {
+  flex: 1;
+  min-width: 0;
+  gap: 5rem;
+}
+
+/* .charts-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  width: 95%;
+  margin: 2rem auto;
+  padding: 2rem;
+
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+.chart-box {
+  flex: 1;
+  min-width: 0;
+}  */
