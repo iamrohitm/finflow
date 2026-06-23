@@ -28,7 +28,7 @@
 .chart-box {
   flex: 1;
   min-width: 0;
-  gap: 5rem;
+  gap: 10px;
 }
 
 /* .charts-wrapper {

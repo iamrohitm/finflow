@@ -12,6 +12,7 @@ import moment from 'moment';
 import TransactionsTable from '../components/TransactionsTable';
 import ChartComponent from '../components/Charts';
 import NoTransactions from '../components/NoTransactions';
+import Loader from '../components/Loader';
 
 
 
@@ -79,9 +80,15 @@ const Dashboard = () => {
       );
       console.log("Document written with ID: ", docRef.id);
       if(!many) toast.success("Transaction Added!");
-      let newArr = transactions;
-      newArr.push(transaction);
-      setTransactions(newArr);
+      // let newArr = transactions;
+      // newArr.push(transaction);
+      // setTransactions(newArr);
+      const transactionWithId = {
+        ...transaction,
+        id: docRef.id,
+      };
+
+      setTransactions([...transactions, transactionWithId]);
       calculateBalance()
       
     } catch (e) {
@@ -122,9 +129,15 @@ const Dashboard = () => {
       const q = query(collection(db, `users/${user.uid}/transactions`));
       const querySnapshot = await getDocs(q);
       let transactionsArray = [];
+      // querySnapshot.forEach((doc) => {
+      //   // doc.data() is never undefined for query doc snapshots
+      //   transactionsArray.push(doc.data());
+      // });
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        transactionsArray.push(doc.data());
+        transactionsArray.push({
+          id: doc.id,
+          ...doc.data()
+        });
       });
       setTransactions(transactionsArray);
       console.log("Transaction array", transactionsArray)
@@ -140,7 +153,7 @@ const Dashboard = () => {
   return (
     <div>
       <Header/>
-      {loading ? <p>Loading...</p> : <> 
+      {loading ? (<Loader/>) : <> 
         <Cards
         income={income}
         expense={expense}
@@ -149,7 +162,7 @@ const Dashboard = () => {
         showIncomeModal={showIncomeModal} 
         />
 
-        {transactions.length != [] ? <ChartComponent sortedTransactions={sortedTransactions} /> : <NoTransactions/>} 
+        {transactions.length > 0 ? <ChartComponent sortedTransactions={sortedTransactions} /> : <NoTransactions/>} 
 
         <AddExpenseModal
             isExpenseModalVisible={isExpenseModalVisible}
@@ -168,4 +181,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dashboard 

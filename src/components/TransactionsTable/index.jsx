@@ -89,7 +89,7 @@ const TransactionsTable = ({transactions, addTransaction, fetchTransactions}) =>
           },
         });
         toast.success("All Transactions Added");
-        fetchTransactions();
+        // fetchTransactions();
         event.target.files = null;
       } catch (e) {
         toast.error(e.message);
@@ -180,7 +180,7 @@ const TransactionsTable = ({transactions, addTransaction, fetchTransactions}) =>
           </div>
         </div>
         
-        <Table dataSource={sortedTransactions} columns={columns} />
+        <Table dataSource={sortedTransactions} columns={columns} rowKey="id"/>
         </div>
 
         </div> 
