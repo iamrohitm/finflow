@@ -18,6 +18,68 @@ input{
     font-family: "Montserrat", sans-serif;
 }
 
+.finflow-modal .ant-modal-content {
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(41, 112, 255, 0.18);
+    overflow: hidden;
+}
+
+.finflow-modal .ant-modal-header {
+    border-bottom: 1px solid rgba(41, 112, 255, 0.12);
+    padding: 20px 24px 16px;
+    background: linear-gradient(135deg, rgba(41, 112, 255, 0.06), rgba(72, 187, 255, 0.04));
+}
+
+.finflow-modal .ant-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.finflow-modal .ant-modal-body {
+    padding: 20px 24px 24px;
+    background: #ffffff;
+}
+
+.finflow-form .ant-form-item {
+    margin-bottom: 18px;
+}
+
+.finflow-form .ant-form-item-label > label {
+    font-weight: 600;
+    color: #374151;
+}
+
+.finflow-form .ant-input,
+.finflow-form .ant-picker,
+.finflow-form .ant-select-selector {
+    border-radius: 12px !important;
+    border: 1px solid #dfe7ff !important;
+    background: #f8faff;
+    min-height: 44px;
+    box-shadow: none !important;
+}
+
+.finflow-form .ant-input:focus,
+.finflow-form .ant-picker-focused,
+.finflow-form .ant-select-focused .ant-select-selector {
+    border-color: var(--theme) !important;
+    box-shadow: 0 0 0 2px rgba(41, 112, 255, 0.12) !important;
+}
+
+.finflow-form .ant-btn-primary {
+    background: linear-gradient(135deg, var(--theme), #4f8cff);
+    border: none;
+    border-radius: 12px;
+    height: 44px;
+    font-weight: 600;
+    box-shadow: 0 12px 24px rgba(41, 112, 255, 0.25);
+}
+
+.finflow-form .ant-btn-primary:hover {
+    opacity: 0.96;
+}
+
 .custom-input{
     border: 0px;
     border-bottom: 1px solid #000;

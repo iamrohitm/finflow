@@ -34,7 +34,7 @@ const SignupSigninComponent = () => {
           // Signed up 
           const user = userCredential.user;
           console.log("User>>", user)
-          toast.success("User created");
+          // toast.success("User created");
           setLoading(false)
           setName("")
           setEmail("")
@@ -52,11 +52,11 @@ const SignupSigninComponent = () => {
           // ..
         });
       }else{
-        toast.error("Password and Confirm password don't match")
+        // toast.error("Password and Confirm password don't match")
         setLoading(false)
       }
     }else{
-      toast.error("All fields are mandatory!")
+      // toast.error("All fields are mandatory!")
       setLoading(false)
     }
 
@@ -73,7 +73,7 @@ const SignupSigninComponent = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        toast.success("User Logged In!")
+        // toast.success("User Logged In!")
         console.log("User logged in", user)
         setLoading(false)
         navigate("/dashboard")
@@ -85,7 +85,7 @@ const SignupSigninComponent = () => {
         setLoading(false)
       });
     }else{
-      toast.error("All fields are mandatory!")
+      // toast.error("All fields are mandatory!")
       setLoading(false)
     }
   }
@@ -107,14 +107,14 @@ const SignupSigninComponent = () => {
           photoURL: user.photoURL ? user.photoURL : "",
           createdAt: new Date(),
         });
-        toast.success("Doc created!")
+        // toast.success("Doc created!")
         setLoading(false)
       }catch(e){
         toast.error(e.message)
         setLoading(false)
       }
     }else{
-      toast.error("Doc already exists!")
+      // toast.error("Doc already exists!")
       setLoading(false)
     }
   }
@@ -131,7 +131,7 @@ const SignupSigninComponent = () => {
       const user = result.user;
       createDoc(user)
       console.log("user>>", user)
-      toast.success("User Authenticated!")
+      // toast.success("User Authenticated!")
       setLoading(false)
       navigate("/dashboard")
       // IdP data available using getAdditionalUserInfo(result)

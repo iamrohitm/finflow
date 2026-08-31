@@ -4,11 +4,10 @@ import Cards from '../components/Cards'
 import { Modal } from 'antd';
 import AddExpenseModal from '../components/Modals/AddExpense';
 import AddIncomeModal from '../components/Modals/AddIncome';
-import { addDoc, collection, getDocs, query } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, writeBatch } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import moment from 'moment';
 import TransactionsTable from '../components/TransactionsTable';
 import ChartComponent from '../components/Charts';
 import NoTransactions from '../components/NoTransactions';
@@ -72,6 +71,46 @@ const Dashboard = () => {
     addTransaction(newTransaction);
   };
 
+  const resetBalance = async () => {
+    if (!user) return;
+
+    Modal.confirm({
+      title: 'Reset all transactions?',
+      content: 'This will permanently delete every transaction for your account. This action cannot be undone.',
+      okText: 'Reset Balance',
+      okButtonProps: { danger: true },
+      cancelText: 'Cancel',
+      centered: true,
+      onOk: async () => {
+        setLoading(true);
+
+        try {
+          const q = query(collection(db, `users/${user.uid}/transactions`));
+          const snapshot = await getDocs(q);
+          const batch = writeBatch(db);
+
+          snapshot.forEach((docSnap) => {
+            batch.delete(docSnap.ref);
+          });
+
+          if (!snapshot.empty) {
+            await batch.commit();
+          }
+
+          setTransactions([]);
+          setIncome(0);
+          setExpense(0);
+          setTotalBalance(0);
+        } catch (error) {
+          console.error('Error resetting balance: ', error);
+          toast.error('Could not reset balance. Please try again.');
+        } finally {
+          setLoading(false);
+        }
+      }
+    });
+  };
+
   async function addTransaction(transaction, many) {
     try {
       const docRef = await addDoc(
@@ -79,21 +118,18 @@ const Dashboard = () => {
         transaction
       );
       console.log("Document written with ID: ", docRef.id);
-      if(!many) toast.success("Transaction Added!");
-      // let newArr = transactions;
-      // newArr.push(transaction);
-      // setTransactions(newArr);
+      // toast.success("Transaction Added!");
       const transactionWithId = {
         ...transaction,
         id: docRef.id,
       };
 
-      setTransactions([...transactions, transactionWithId]);
-      calculateBalance()
+      setTransactions((prevTransactions) => [...prevTransactions, transactionWithId]);
+      calculateBalance();
       
     } catch (e) {
       console.error("Error adding document: ", e);
-      if(!many) toast.error("Couldn't add transaction");
+      // if(!many) toast.error("Couldn't add transaction");
       
     }
   }
@@ -141,12 +177,12 @@ const Dashboard = () => {
       });
       setTransactions(transactionsArray);
       console.log("Transaction array", transactionsArray)
-      toast.success("Transactions Fetched!");
+      // toast.success("Transactions Fetched!");
     }
     setLoading(false);
   }
 
-  let sortedTransactions = transactions.sort((a, b) => {
+  let sortedTransactions = [...transactions].sort((a, b) => {
         return new Date(a.date) - new Date(b.date);
   })
 
@@ -159,7 +195,8 @@ const Dashboard = () => {
         expense={expense}
         totalBalance={totalBalance}
         showExpenseModal={showExpenseModal}
-        showIncomeModal={showIncomeModal} 
+        showIncomeModal={showIncomeModal}
+        onResetBalance={resetBalance}
         />
 
         {transactions.length > 0 ? <ChartComponent sortedTransactions={sortedTransactions} /> : <NoTransactions/>} 

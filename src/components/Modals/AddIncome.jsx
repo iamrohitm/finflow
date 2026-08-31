@@ -9,18 +9,26 @@ function AddIncomeModal({
   const [form] = Form.useForm();
   return (
     <Modal
+      className="finflow-modal"
+      centered
+      width={520}
       style={{ fontWeight: 600 }}
       title="Add Income"
       open={isIncomeModalVisible  }
-      onCancel={handleIncomeCancel}
+      onCancel={() => {
+        form.resetFields();
+        handleIncomeCancel();
+      }}
       footer={null}
     >
       <Form
+        className="finflow-form"
         form={form}
         layout="vertical"
         onFinish={(values) => {
           onFinish(values, "income");
           form.resetFields();
+          handleIncomeCancel();
         }}
       >
         <Form.Item

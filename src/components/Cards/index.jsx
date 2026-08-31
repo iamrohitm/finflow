@@ -3,7 +3,7 @@ import './styles.css'
 import { Card, Row } from 'antd'
 import Button from '../Button'; 
 
-const Cards = ({income, expense, totalBalance ,showExpenseModal, showIncomeModal}) => {
+const Cards = ({income, expense, totalBalance, showExpenseModal, showIncomeModal, onResetBalance}) => {
   return (
     <div>
        <Row
@@ -17,7 +17,7 @@ const Cards = ({income, expense, totalBalance ,showExpenseModal, showIncomeModal
             <Card variant={true} className='my-card'>
                 <h2>Current Balance</h2>
                 <p>₹{totalBalance}</p>
-                <Button text='Reset Balance' blue={true} />
+                <Button text='Reset Balance' blue={true} onClick={onResetBalance} />
             </Card>
 
             <Card variant={true} className='my-card'>

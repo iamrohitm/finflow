@@ -9,18 +9,26 @@ function AddExpenseModal({
   const [form] = Form.useForm();
   return (
     <Modal
+      className="finflow-modal"
+      centered
+      width={520}
       style={{ fontWeight: 600 }}
       title="Add Expense"
       open={isExpenseModalVisible }
-      onCancel={handleExpenseCancel}
+      onCancel={() => {
+        form.resetFields();
+        handleExpenseCancel();
+      }}
       footer={null}
     >
       <Form
+        className="finflow-form"
         form={form}
         layout="vertical"
         onFinish={(values) => {
           onFinish(values, "expense");
           form.resetFields();
+          handleExpenseCancel();
         }}
       >
         <Form.Item
