@@ -1,9 +1,11 @@
 .my-card{
     box-shadow: var(--shadow);
     margin: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     min-width: 300px;
     flex: 1;
+    border: 1px solid rgba(223, 234, 252, 0.9);
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(240,246,255,0.9));
 }
 .ant-card-head-title{
     margin: 0rem !important;
@@ -21,5 +23,14 @@
 
 .my-card p{
     margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--theme-dark);
+}
+
+.my-card h2 {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
 }
 

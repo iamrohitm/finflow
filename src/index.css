@@ -3,37 +3,52 @@
 
 :root {
     --theme: #2970ff;
-    /* --theme: #2563eb; */
-    --black: #000;
-    --white: #fff;
-    --shadow: 0px 0px 30px 8px rgba(227, 227, 227, 0.75); 
-    /* --shadow: 0 4px 20px rgba(0, 0, 0, 0.08); */
+    --theme-dark: #1e4ed8;
+    --theme-soft: #eaf1ff;
+    --theme-accent: #60a5fa;
+    --black: #0f172a;
+    --white: #ffffff;
+    --text: #1f2937;
+    --muted: #64748b;
+    --surface: #f8fbff;
+    --border: #dfeafc;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --shadow: 0px 18px 45px rgba(41, 112, 255, 0.12);
 }
 
 body{   
     margin: 0;
     font-family: "Montserrat", sans-serif;
+    background: linear-gradient(180deg, #f5f9ff 0%, #eef5ff 100%);
+    color: var(--text);
 }
-input{
+
+input, textarea, select, button {
     font-family: "Montserrat", sans-serif;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .finflow-modal .ant-modal-content {
-    border-radius: 20px;
-    box-shadow: 0 24px 60px rgba(41, 112, 255, 0.18);
+    border-radius: 22px;
+    box-shadow: 0 28px 80px rgba(41, 112, 255, 0.18);
     overflow: hidden;
+    border: 1px solid var(--border);
 }
 
 .finflow-modal .ant-modal-header {
-    border-bottom: 1px solid rgba(41, 112, 255, 0.12);
+    border-bottom: 1px solid var(--border);
     padding: 20px 24px 16px;
-    background: linear-gradient(135deg, rgba(41, 112, 255, 0.06), rgba(72, 187, 255, 0.04));
+    background: linear-gradient(135deg, rgba(41, 112, 255, 0.06), rgba(96, 165, 250, 0.04));
 }
 
 .finflow-modal .ant-modal-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--text);
 }
 
 .finflow-modal .ant-modal-body {
@@ -47,15 +62,15 @@ input{
 
 .finflow-form .ant-form-item-label > label {
     font-weight: 600;
-    color: #374151;
+    color: var(--text);
 }
 
 .finflow-form .ant-input,
 .finflow-form .ant-picker,
 .finflow-form .ant-select-selector {
     border-radius: 12px !important;
-    border: 1px solid #dfe7ff !important;
-    background: #f8faff;
+    border: 1px solid var(--border) !important;
+    background: var(--surface);
     min-height: 44px;
     box-shadow: none !important;
 }
@@ -68,12 +83,12 @@ input{
 }
 
 .finflow-form .ant-btn-primary {
-    background: linear-gradient(135deg, var(--theme), #4f8cff);
+    background: linear-gradient(135deg, var(--theme), var(--theme-accent));
     border: none;
     border-radius: 12px;
     height: 44px;
     font-weight: 600;
-    box-shadow: 0 12px 24px rgba(41, 112, 255, 0.25);
+    box-shadow: 0 12px 24px rgba(41, 112, 255, 0.22);
 }
 
 .finflow-form .ant-btn-primary:hover {
@@ -82,10 +97,225 @@ input{
 
 .custom-input{
     border: 0px;
-    border-bottom: 1px solid #000;
-    padding: 0.5rem 0rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.18);
+    padding: 0.7rem 0.75rem;
     width: 100%;
-    border-radius: 0;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.45);
+}
+
+.custom-input{
+    margin-top: 0.5rem !important;
+}
+
+.custom-input::placeholder{
+    color: rgba(15, 23, 42, 0.45);
+}
+
+.custom-input:focus{
+    outline: none;
+    opacity: 1;
+    transition: all 0.3s;
+    border-color: var(--theme);
+    box-shadow: 0 0 0 2px rgba(41, 112, 255, 0.1);
+}
+
+.input-flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 48px;
+  box-shadow: var(--shadow);
+  border-radius: 0.9rem;
+  padding: 0rem 0.75rem;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(223, 234, 252, 0.8);
+}
+
+.input-flex input {
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem 0.5rem;
+  border: 0;
+  background: transparent;
+}
+
+.input-flex input:focus {
+  outline: none;
+}
+
+.select-input {
+  width: 30%;
+  min-height: 48px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow);
+  border-radius: 0.9rem !important;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(223, 234, 252, 0.8);
+}
+
+.select-input .ant-select-selector {
+  min-height: 44px !important;
+  height: 44px !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0.75rem !important;
+}
+
+.select-input .ant-select-selection-item,
+.select-input .ant-select-selection-placeholder {
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.select-input > div {
+  border: 0px solid #fff !important;
+}
+
+.finflow-modal .ant-modal-content {
+  background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+  border-radius: 24px;
+  border: 1px solid rgba(223, 234, 252, 0.8);
+}
+
+.finflow-modal .ant-modal-header {
+  background: linear-gradient(135deg, rgba(41, 112, 255, 0.07), rgba(96, 165, 250, 0.05));
+  border-bottom: 1px solid rgba(223, 234, 252, 0.8);
+  padding: 20px 24px 16px;
+}
+
+.finflow-modal .ant-modal-close {
+  color: var(--muted);
+}
+
+.finflow-modal .ant-modal-close:hover {
+  color: var(--theme);
+}
+
+.finflow-modal .ant-modal-body {
+  padding: 24px;
+}
+
+.finflow-form .ant-form-item-label > label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.finflow-form .ant-input,
+.finflow-form .ant-picker,
+.finflow-form .ant-select-selector {
+  border-radius: 12px !important;
+  min-height: 46px !important;
+  background: #f9fbff;
+  border: 1px solid var(--border) !important;
+}
+
+.finflow-form .ant-btn-primary {
+  width: 100%;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.modal-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-title-icon {
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.income-modal .ant-modal-header {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.08), rgba(16, 185, 129, 0.06)) !important;
+}
+
+.expense-modal .ant-modal-header {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(245, 158, 11, 0.06)) !important;
+}
+
+.finflow-form .ant-form-item {
+  margin-bottom: 20px;
+}
+
+.finflow-form .ant-form-item-label > label {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.finflow-form .ant-input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.date-input {
+  width: 100% !important;
+}
+
+.dashboard-skeleton {
+  width: 92%;
+  margin: 1.5rem auto;
+  padding: 1rem 0;
+}
+
+.skeleton-card-row,
+.skeleton-table-row,
+.skeleton-chart-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.skeleton-card,
+.skeleton-chart,
+.skeleton-table {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #c7d6f5 20%, #edf4ff 50%, #c7d6f5 80%);
+  background-size: 200% 100%;
+  box-shadow: inset 0 0 0 1px rgba(120, 139, 168, 0.18);
+  opacity: 1;
+  filter: saturate(1.2);
+  animation: skeletonShimmer 1.4s ease infinite;
+}
+
+.skeleton-card {
+  flex: 1;
+  min-height: 180px;
+}
+
+.skeleton-chart {
+  flex: 1;
+  min-height: 280px;
+}
+
+.skeleton-table {
+  width: 100%;
+  min-height: 260px;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .custom-input{

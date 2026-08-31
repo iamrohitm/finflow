@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Row, Button, Modal, Form, Input, DatePicker, Select } from "antd";
+import { Modal, Form, Input, DatePicker, Select, Button } from "antd";
 
 function AddIncomeModal({
   isIncomeModalVisible ,
@@ -9,11 +9,10 @@ function AddIncomeModal({
   const [form] = Form.useForm();
   return (
     <Modal
-      className="finflow-modal"
+      className="finflow-modal income-modal"
       centered
-      width={520}
-      style={{ fontWeight: 600 }}
-      title="Add Income"
+      width={480}
+      title={<div className="modal-title-wrapper"><span className="modal-title-icon income-icon">📈</span>Add Income</div>}
       open={isIncomeModalVisible  }
       onCancel={() => {
         form.resetFields();
@@ -32,7 +31,6 @@ function AddIncomeModal({
         }}
       >
         <Form.Item
-          style={{ fontWeight: 600 }}
           label="Name"
           name="name"
           rules={[
@@ -42,43 +40,44 @@ function AddIncomeModal({
             },
           ]}
         >
-          <Input type="text" className="custom-input" />
+          <Input type="text" placeholder="e.g., Monthly Salary" />
         </Form.Item>
         <Form.Item
-          style={{ fontWeight: 600 }}
           label="Amount"
           name="amount"
           rules={[
             { required: true, message: "Please input the income amount!" },
           ]}
         >
-          <Input type="number" className="custom-input" />
+          <Input type="number" placeholder="Enter amount" />
         </Form.Item>
         <Form.Item
-          style={{ fontWeight: 600 }}
           label="Date"
           name="date"
           rules={[
             { required: true, message: "Please select the income date!" },
           ]}
         >
-          <DatePicker format="YYYY-MM-DD" className="custom-input" />
+          <DatePicker format="YYYY-MM-DD" className="date-input" />
         </Form.Item>
         <Form.Item
-          style={{ fontWeight: 600 }}
-          label="Tag"
+          label="Category"
           name="tag"
-          rules={[{ required: true, message: "Please select a tag!" }]}
+          rules={[{ required: true, message: "Please select a category!" }]}
         >
-          <Select className="select-input-2">
+          <Select placeholder="Select a category">
             <Select.Option value="salary">Salary</Select.Option>
             <Select.Option value="freelance">Freelance</Select.Option>
             <Select.Option value="investment">Investment</Select.Option>
-            {/* Add more tags here */}
+            <Select.Option value="bonus">Bonus</Select.Option>
+            <Select.Option value="gifts">Gifts</Select.Option>
+            <Select.Option value="business">Business</Select.Option>
+            <Select.Option value="passive">Passive Income</Select.Option>
+            <Select.Option value="other">Other</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item>
-          <Button className="btn btn-blue" type="primary" htmlType="submit">
+        <Form.Item style={{ marginBottom: 0 }}>
+          <Button className="btn btn-blue" type="primary" htmlType="submit" block>
             Add Income
           </Button>
         </Form.Item>

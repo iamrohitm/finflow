@@ -1,5 +1,5 @@
 .navbar { 
-    background-color: var(--theme);
+    background: linear-gradient(135deg, var(--theme), var(--theme-dark));
     padding: 1rem 1.5rem;
     position: sticky;
     top: 0;
@@ -9,18 +9,20 @@
     justify-content: space-between;
     align-items: center;
     z-index: 10;
+    box-shadow: 0 12px 28px rgba(30, 78, 216, 0.18);
 }
 
 .logo{
     color: var(--white);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1rem;
     margin: 0;
 }
 
 .link{
-    opacity: 0.8;
+    opacity: 0.9;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .link:hover{
