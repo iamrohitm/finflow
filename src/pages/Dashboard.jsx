@@ -101,6 +101,7 @@ const Dashboard = () => {
           setIncome(0);
           setExpense(0);
           setTotalBalance(0);
+          toast.success("Balance Reset Successfully!");
         } catch (error) {
           console.error('Error resetting balance: ', error);
           toast.error('Could not reset balance. Please try again.');
@@ -118,7 +119,7 @@ const Dashboard = () => {
         transaction
       );
       console.log("Document written with ID: ", docRef.id);
-      // toast.success("Transaction Added!");
+      toast.success("Transaction Added!");
       const transactionWithId = {
         ...transaction,
         id: docRef.id,
@@ -129,7 +130,7 @@ const Dashboard = () => {
       
     } catch (e) {
       console.error("Error adding document: ", e);
-      // if(!many) toast.error("Couldn't add transaction");
+      if(!many) toast.error("Couldn't add transaction");
       
     }
   }

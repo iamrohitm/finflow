@@ -87,13 +87,12 @@ const TransactionsTable = ({transactions, addTransaction, fetchTransactions}) =>
               };
               await addTransaction(newTransaction, true);
             }
+            toast.success("All Transactions Imported Successfully!");
           },
         });
-        // toast.success("All Transactions Added");
-        // fetchTransactions();
         event.target.files = null;
       } catch (e) {
-        // toast.error(e.message);
+        toast.error(e.message);
       }
     }
 

@@ -22,14 +22,14 @@ const Header = () => {
     try{
       signOut(auth).then(() => {
         // Sign-out successful.
-        // toast.success("Logged out Successfully!!")
+        toast.success("Logged Out Successfully!")
         navigate("/")
       }).catch((error) => {
         // An error happened.
-        // toast.error(error.message)
+        toast.error(error.message)
       });
     }catch(e){
-      // toast.error(e.message)
+      toast.error(e.message)
     }
   }
 
