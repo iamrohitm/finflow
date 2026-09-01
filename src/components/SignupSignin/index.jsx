@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './styles.css';
 import Input from '../Input';
 import Button from '../Button'; 
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import { auth, db, provider} from '../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore"; 
@@ -10,13 +10,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const SignupSigninComponent = () => {
+const SignupSigninComponent = ({ mode = 'signup' }) => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [loading, setLoading] = useState(false)
-  const [loginForm, setLoginForm] = useState(false)
   const navigate = useNavigate()
 
   function signupWithEmail() {
@@ -150,10 +149,10 @@ const SignupSigninComponent = () => {
 
   return (
     <>
-      {loginForm ? 
+      {mode === 'signin' ? 
         <div className='signup-wrapper'>
           <h2 className='title'>
-            Login on <span style={{color: "var(--theme)"}}>FinFlow.</span> 
+            Sign In to <span style={{color: "var(--theme)"}}>FinFlow.</span> 
           </h2>
 
           <form>
@@ -175,27 +174,27 @@ const SignupSigninComponent = () => {
 
             <Button 
               disabled={loading} 
-              text={loading ? "Loading...": "Login Using Email and Password"} 
+              text={loading ? "Loading...": "Sign In with Email"} 
               onClick={loginUsingEmail}
             />
             <p className='p-login'>or</p>
             <Button 
               onClick={googleAuth}
-              text={loading ? "Loading...": "Login Using Google"} 
+              text={loading ? "Loading...": "Sign In with Google"} 
               blue={true}
             />
             <p 
               className='p-login' 
               style={{cursor: 'pointer'}}
-              onClick={()=>setLoginForm(!loginForm)}
+              onClick={()=>navigate('/signup')}
             >
-              Or Don't Have an Account Already? Click Here
+              Don't have an account? Sign up here
             </p>
           </form>
         </div> :  
         <div className='signup-wrapper'>
           <h2 className='title'>
-            Sign Up on <span style={{color: "var(--theme)"}}>FinFlow.</span> 
+            Create Account on <span style={{color: "var(--theme)"}}>FinFlow.</span> 
           </h2>
 
           <form>
@@ -233,21 +232,21 @@ const SignupSigninComponent = () => {
 
             <Button 
               disabled={loading} 
-              text={loading ? "Loading...": "Signup Using Email and Password"} 
+              text={loading ? "Loading...": "Sign Up with Email"} 
               onClick={signupWithEmail}
             />
             <p className='p-login'>or</p>
             <Button
               onClick={googleAuth}
-              text={loading ? "Loading...": "Signup Using Google"} 
+              text={loading ? "Loading...": "Sign Up with Google"} 
               blue={true}
             />
             <p 
               className='p-login'
               style={{cursor: 'pointer'}}
-              onClick={()=>setLoginForm(!loginForm)}
+              onClick={()=>navigate('/signin')}
             >
-              Or Have an Account Already? Click Here
+              Already have an account? Sign in here
             </p>
           </form>
         </div>

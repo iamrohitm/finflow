@@ -7,7 +7,7 @@ import AddIncomeModal from '../components/Modals/AddIncome';
 import { addDoc, collection, getDocs, query, writeBatch } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import TransactionsTable from '../components/TransactionsTable';
 import ChartComponent from '../components/Charts';
 import NoTransactions from '../components/NoTransactions';

@@ -2,15 +2,15 @@ import React from 'react'
 import Header from '../components/Header'
 import SignupSigninComponent from '../components/SignupSignin'
 
-const Signup = () => {
+const Signin = () => {
   return (
     <div>
       <Header/>
       <div className='wrapper'>
-        <SignupSigninComponent mode="signup"/>
+        <SignupSigninComponent mode="signin"/>
       </div>
     </div>
   )
 }
 
-export default Signup
+export default Signin
